@@ -1,0 +1,6 @@
+﻿Build iniciado...
+1>------ Compilação iniciada: Projeto: bbpfer, Configuração: Debug Any CPU ------
+1>C:\Users\User\source\repos\bbpfer\FundamentalManagers\ExternalLoaders\EventCreator.cs(14,32,18,119): warning CS0618: "RandomEventBuilder<RaveEvent>.SetDescription(string)" é obsoleto: "Please use SetSound instead!"
+1>bbpfer -> C:\Users\User\source\repos\bbpfer\bin\Debug\netstandard2.1\bbpfer.dll
+1>Projeto de compilação pronto "bbpfer.csproj".
+========== Compilar: 1 com êxito, 0 com falha, 0 atualizados, 0 ignorados ==========
