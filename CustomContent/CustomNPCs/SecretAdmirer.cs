@@ -31,7 +31,7 @@ namespace bbpfer.CustomContent.CustomNPCs
             spotVoicelines[0] = AssetsCreator.CreateSound("SCR_SpotPlayer1", "Characters", "Vfx_SCR_Spot1", SoundType.Voice, "#C7C7EA", 1);
             spotVoicelines[1] = AssetsCreator.CreateSound("SCR_SpotPlayer2", "Characters", "Vfx_SCR_Spot2", SoundType.Voice, "#C7C7EA", 1);
             getItemVoiceline = AssetsCreator.CreateSound("SCR_GetItemFormPlayer", "Characters", "Vfx_SCR_WithItem", SoundType.Voice, "#C7C7EA", 1);
-            upsetVoiceline = AssetsCreator.CreateSound("SCR_GetItemFormPlayer", "Characters", "Vfx_SCR_RemovedItem", SoundType.Voice, "#C7C7EA", 1);
+            upsetVoiceline = AssetsCreator.CreateSound("SCR_RemovedItemFromRoom", "Characters", "Vfx_SCR_RemovedItem", SoundType.Voice, "#C7C7EA", 1);
         }
 
         public void InGameSetup() =>
@@ -109,6 +109,10 @@ namespace bbpfer.CustomContent.CustomNPCs
         public override void PlayerSighted(PlayerManager player)
         {
             base.PlayerSighted(player);
+
+            if (scr.Navigator.Entity.Frozen || scr.Navigator.Am.Multiplier <= 0)  
+                scr.spriteRenderer[0].sprite = scr.stunSprite;  
+
 
             if (scr.cooldown.cooldownIsEnd && player.itm.HasItem())
             {

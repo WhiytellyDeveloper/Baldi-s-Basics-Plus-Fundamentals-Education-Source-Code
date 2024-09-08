@@ -112,6 +112,11 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             Posters.noobPoster = CreatePoster("NoobPoster", "Posters").CreatePoster(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 95, 100, 120, 130, 105 });
             Posters.mystma12SunglassesPoster = CreatePoster("Mystman12SunglassesPoster", "Posters").CreatePoster(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 65, 80, 75, 100, 80 });
 
+            Posters.secretAdmirer10LikesPoster = CreatePoster("tyfor10likes", "Posters");
+            Posters.secretAdimirerLovePlayer = CreatePoster("AdmirerSecretPoster1", "Posters");
+
+            Posters.proibithedGottaSweep = CreatePoster("NoGottaSweep", "Posters");
+
             Posters.clockPoster = CreatePoster("Clock", "Structures");
         }
 
@@ -137,6 +142,9 @@ public static class Posters
     public static PosterObject noobPoster;
     public static PosterObject altBrunitoPoster;
     public static PosterObject mystma12SunglassesPoster;
+    public static PosterObject secretAdmirer10LikesPoster;
+    public static PosterObject secretAdimirerLovePlayer;
+    public static PosterObject proibithedGottaSweep;
 
     public static PosterObject teacherChalkboard;
     public static PosterObject spellChalkboard;

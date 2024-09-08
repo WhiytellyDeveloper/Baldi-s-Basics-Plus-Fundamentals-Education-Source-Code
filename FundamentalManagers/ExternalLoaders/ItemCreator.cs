@@ -480,6 +480,42 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             .Build()
             .CreateItem(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 50, 70, 62, 55, 80 })
             .AddIntoShop(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 30, 40, 42, 35, 40 });
+
+            ItemObject soup = new ItemBuilder(BasePlugin.instance.Info)
+            .SetNameAndDescription("Itm_Soup", "Desc_Soup")
+            .SetEnum(CustomItems.SoupInCan.ToString())
+            .SetShopPrice(70)
+            .SetItemComponent<ITM_SoupCan>()
+            .SetSprites("soup")
+            .SetGeneratorCost(30)
+            .Build()
+            .InitializeItem()
+            .CreateItem(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 90, 100, 70, 80, 111 })
+            .AddIntoShop(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 70, 65, 100, 70, 102 });
+
+            ItemObject whiteZesty = new ItemBuilder(BasePlugin.instance.Info)
+            .SetNameAndDescription("Itm_ZestyFlavoredWhite", "Desc_ZestyFlavoredWhite")
+            .SetEnum(CustomItems.WhiteZesty.ToString())
+            .SetShopPrice(250)
+            .SetItemComponent<ITM_ZestyWhiteFlavored>()
+            .SetSprites("WhiteZestyBarIcon")
+            .SetGeneratorCost(45)
+            .Build()
+            .InitializeItem()
+            .CreateItem(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 45, 70, 55, 60, 38 })
+            .AddIntoShop(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 50, 75, 60, 65, 97 });
+
+            ItemObject ductTape = new ItemBuilder(BasePlugin.instance.Info)
+            .SetNameAndDescription("Itm_DuctTape", "Desc_DuctTape")
+            .SetEnum(CustomItems.DuctTape.ToString())
+            .SetShopPrice(500)
+            .SetItemComponent<ITM_DuctTape>()
+            .SetSprites("Ducttape")
+            .SetGeneratorCost(35)
+            .Build()
+            .InitializeItem()
+            .CreateItem(new string[] { "F2", "F3", "F4", "END" }, new int[] { 30, 22, 40, 38, 50 })
+            .AddIntoShop(new string[] { "F2", "F3", "F4", "END" }, new int[] { 20, 12, 30, 24, 25 });
         }
     }
 }

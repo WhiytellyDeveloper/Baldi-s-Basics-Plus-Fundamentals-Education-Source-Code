@@ -48,6 +48,7 @@ namespace bbpfer.ModsCompabilty.Editor
             AddNpc("turtiwille", CustomNPCs.Turtiwille);
             AddNpc("ballador", CustomNPCs.Ballador);
             AddNpc("SCR", CustomNPCs.SecretAdmirer);
+            AddNpc("dustpan", CustomNPCs.DustPan);
 
             AddItem(CustomItems.CommonTeleporter);
             AddItem(CustomItems.CoffeAndSugar);
@@ -79,6 +80,9 @@ namespace bbpfer.ModsCompabilty.Editor
             AddItem(CustomItems.Bag);
             AddItem(CustomItems.Shovel);
             AddItem(CustomItems.HallPass);
+            AddItem(CustomItems.WhiteZesty);
+            AddItem(CustomItems.SoupInCan);
+            AddItem(CustomItems.DuctTape);
         }
 
         public void AddRoom(string room) =>
@@ -132,55 +136,32 @@ namespace bbpfer.ModsCompabilty.Editor
         {
             private static void Postfix(PlusLevelEditor __instance)
             {
-                bool alreadyLoaded = false;
+                __instance.toolCats.Find((ToolCategory x) => x.name == "halls").tools.AddRange(rooms);
+                __instance.toolCats.Find((ToolCategory x) => x.name == "characters").tools.AddRange(npcs);
+                __instance.toolCats.Find((ToolCategory x) => x.name == "items").tools.AddRange(items);
 
-                if (!alreadyLoaded)
+                __instance.toolCats.Find((ToolCategory x) => x.name == "objects").tools.AddRange(new List<EditorTool>(new EditorTool[]
                 {
-                    alreadyLoaded = true;
-
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("ArtWall", AssetsCreator.Get<Texture2D>("ArtWall"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("ArtRoomCarpet", AssetsCreator.Get<Texture2D>("ArtRoomCarpet"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("FancyCeiling", AssetsCreator.Get<Texture2D>("FancyCeiling"));
-                    __instance.level.defaultTextures.Add("Artistic", new TextureContainer { wall = "ArtWall", floor = "ArtRoomCarpet", ceiling = "FancyCeiling" });
-
-
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecurityWall", AssetsCreator.Get<Texture2D>("SecurityWall"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("DiamongPlateFloor", AssetsCreator.Get<Texture2D>("DiamongPlateFloor"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecurityCeiling", AssetsCreator.Get<Texture2D>("SecurityCeiling"));
-                    __instance.level.defaultTextures.Add("Security", new TextureContainer { wall = "SecurityWall", floor = "DiamongPlateFloor", ceiling = "SecurityCeiling" });
-
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("PlaceholderWall", FundamentalCodingHelper.FindResourceObjectWithName<Texture2D>("Placeholder_Wall_W"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("PlaceholderFloor", FundamentalCodingHelper.FindResourceObjectWithName<Texture2D>("Placeholder_Floor"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("PlaceholderCeiling", FundamentalCodingHelper.FindResourceObjectWithName<Texture2D>("Placeholder_Celing"));
-                    __instance.level.defaultTextures.Add("Placeholder", new TextureContainer { wall = "PlaceholderWall", floor = "PlaceholderFloor", ceiling = "PlaceholderCeiling" });
-
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("StorageWall", AssetsCreator.Get<Texture2D>("WlwightAnimatedBrick"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("StorageFloor", AssetsCreator.Get<Texture2D>("Carpet_Red"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("StorageCeiling", AssetsCreator.Get<Texture2D>("HapracoNewCeiling"));
-                    __instance.level.defaultTextures.Add("Storage", new TextureContainer { wall = "StorageWall", floor = "StorageFloor", ceiling = "StorageCeiling" });
-
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecretAdmirerWall", AssetsCreator.Get<Texture2D>("SecretAdmirerWall"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecretAdmirerFloor", AssetsCreator.Get<Texture2D>("SecretAdmirerFloor"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecretAdmirerCeiling", AssetsCreator.Get<Texture2D>("SecretAdmirerCeiling"));
-                    __instance.level.defaultTextures.Add("AdmirerSecretRoom", new TextureContainer { wall = "SecretAdmirerWall", floor = "SecretAdmirerFloor", ceiling = "SecretAdmirerCeiling" });
-
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("DustPanWall", AssetsCreator.Get<Texture2D>("HappyWallDustPan"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("DustPanFloor", AssetsCreator.Get<Texture2D>("Calpert"));
-                    PlusLevelLoaderPlugin.Instance.textureAliases.Add("DustPanCeiling", AssetsCreator.Get<Texture2D>("GenericCeiling1"));
-                    __instance.level.defaultTextures.Add("DustPan", new TextureContainer { wall = "DustPanWall", floor = "DustPanFloor", ceiling = "DustPanCeiling" });
-
-                    __instance.toolCats.Find((ToolCategory x) => x.name == "halls").tools.AddRange(rooms);
-                    __instance.toolCats.Find((ToolCategory x) => x.name == "characters").tools.AddRange(npcs);
-                    __instance.toolCats.Find((ToolCategory x) => x.name == "items").tools.AddRange(items);
-
-                    __instance.toolCats.Find((ToolCategory x) => x.name == "objects").tools.AddRange(new List<EditorTool>(new EditorTool[]
-                    {
                     new CustomRotateAndPlaceEditor("Painting"),
                     new CustomRotateAndPlaceEditor("Piano"),
                     new CustomRotateAndPlaceEditor("Pedestal"),
                     new CustomRotateAndPlaceEditor("TrashBag")
-                    }));
-                }
+                }));
+
+            }
+        }
+
+        [HarmonyPatch(typeof(EditorLevel), "InitializeDefaultTextures")]
+        internal class DefaulTextureInRooms
+        {
+            private static void Postfix(EditorLevel __instance)
+            {
+                __instance.defaultTextures.Add("Artistic", new TextureContainer { wall = "ArtWall", floor = "ArtRoomCarpet", ceiling = "FancyCeiling" });
+                __instance.defaultTextures.Add("Security", new TextureContainer { wall = "SecurityWall", floor = "DiamongPlateFloor", ceiling = "SecurityCeiling" });
+                __instance.defaultTextures.Add("Placeholder", new TextureContainer { wall = "PlaceholderWall", floor = "PlaceholderFloor", ceiling = "PlaceholderCeiling" });
+                __instance.defaultTextures.Add("Storage", new TextureContainer { wall = "StorageWall", floor = "StorageFloor", ceiling = "StorageCeiling" });
+                __instance.defaultTextures.Add("AdmirerSecretRoom", new TextureContainer { wall = "SecretAdmirerWall", floor = "SecretAdmirerFloor", ceiling = "SecretAdmirerCeiling" });
+                __instance.defaultTextures.Add("DustPan", new TextureContainer { wall = "DustPanWall", floor = "DustPanFloor", ceiling = "DustPanCeiling" });
             }
         }
 

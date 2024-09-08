@@ -52,6 +52,10 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
 
             Dictionary<string, RoomAsset> artRooms = CreateRooms("Artistic", 0, true, artFuncContainer, false, false, null, false);
 
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("ArtWall", AssetsCreator.Get<Texture2D>("ArtWall"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("ArtRoomCarpet", AssetsCreator.Get<Texture2D>("ArtRoomCarpet"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("FancyCeiling", AssetsCreator.Get<Texture2D>("FancyCeiling"));
+
             FundamentalManager.GetFloorByName("F2").roomGroups.Add(new RoomGroup
             {
                 name = "ArtisticRooms",
@@ -128,6 +132,10 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             RoomFunctionContainer securityGuardFuncContainer = CreateRoomFunctionContainer("SecurityGuard");
             securityGuardFuncContainer.AddRoomFunctionToContainer<LessItemsFunction>().chance = 1;
 
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecurityWall", AssetsCreator.Get<Texture2D>("SecurityWall"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("DiamongPlateFloor", AssetsCreator.Get<Texture2D>("DiamongPlateFloor"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecurityCeiling", AssetsCreator.Get<Texture2D>("SecurityCeiling"));
+
             Dictionary<string, RoomAsset> securityGuardRooms = CreateRooms("SecurityGuard", 0, true, securityGuardFuncContainer, false, false, null, false);
 
             /*
@@ -164,6 +172,10 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             PlusLevelLoaderPlugin.Instance.roomSettings["Storage"].container = storageFuncContainer;
 
             Dictionary<string, RoomAsset> storageRooms = CreateRooms("Storage", 35, true, storageFuncContainer, false, false, null, false);
+
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("StorageWall", AssetsCreator.Get<Texture2D>("WlwightAnimatedBrick"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("StorageFloor", AssetsCreator.Get<Texture2D>("Carpet_Red"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("StorageCeiling", AssetsCreator.Get<Texture2D>("HapracoNewCeiling"));
 
             FundamentalManager.GetFloorByName("F1").roomGroups.Add(new RoomGroup
             {
@@ -264,6 +276,13 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
                 ObjectCreators.CreateDoorDataObject("PlaceholderDoor", AssetsCreator.CreateTexture("Door_Open", "Doors"), AssetsCreator.CreateTexture("Door_Closed", "Doors"))
             ));
 
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("PlaceholderWall", FundamentalCodingHelper.FindResourceObjectWithName<Texture2D>("Placeholder_Wall_W"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("PlaceholderFloor", FundamentalCodingHelper.FindResourceObjectWithName<Texture2D>("Placeholder_Floor"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("PlaceholderCeiling", FundamentalCodingHelper.FindResourceObjectWithName<Texture2D>("Placeholder_Celing"));
+
+            Dictionary<string, RoomAsset> placeholderRooms = CreateRooms("Placeholder", 0, true, null, false, false, null, false);
+
+
             Color minimapAdmirerSecretColor = new Color();
             ColorUtility.TryParseHtmlString("#BF40BF", out minimapAdmirerSecretColor);
 
@@ -277,6 +296,9 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             AssetsCreator.CreateTexture("SecretAdmirerWall", "CellTextures");
             AssetsCreator.CreateTexture("SecretAdmirerFloor", "CellTextures");
             AssetsCreator.CreateTexture("SecretAdmirerCeiling", "CellTextures");
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecretAdmirerWall", AssetsCreator.Get<Texture2D>("SecretAdmirerWall"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecretAdmirerFloor", AssetsCreator.Get<Texture2D>("SecretAdmirerFloor"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("SecretAdmirerCeiling", AssetsCreator.Get<Texture2D>("SecretAdmirerCeiling"));
 
             var pilarSprite = ObjectCreationExtensions.CreateSpriteBillboard(AssetsCreator.CreateSprite("Pedestal", "Rooms", 20));
             var pilar = new GameObject("Pilar");
@@ -293,7 +315,7 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             pilar.gameObject.GetComponent<ItemPilar>().sprite = itemSprite;
             pilar.gameObject.AddToEditor("Pedestal", new Vector3(0, 3.2f, 0));
 
-            CreateRooms(path:"SecretAdmirer", maxValue:30, isOffLimits:true, cont:null, isAHallway:false, secretRoom:false, mapBg:AssetsCreator.CreateTexture("MapBG_Hearts", "Minimap"), true, new Texture2D[] { AssetsCreator.Get<Texture2D>("SecretAdmirerWall"), AssetsCreator.Get<Texture2D>("SecretAdmirerFloor"), AssetsCreator.Get<Texture2D>("SecretAdmirerCeiling") });
+            CreateRooms(path:"SecretAdmirer", maxValue:30, isOffLimits:true, cont:null, isAHallway:false, secretRoom:false, mapBg:AssetsCreator.CreateTexture("MapBG_Hearts", "Minimap"), true, new Texture2D[] { AssetsCreator.Get<Texture2D>("SecretAdmirerWall"), AssetsCreator.Get<Texture2D>("SecretAdmirerFloor"), AssetsCreator.Get<Texture2D>("SecretAdmirerCeiling") }, new WeightedPosterObject[] { new WeightedPosterObject { selection = Posters.secretAdmirer10LikesPoster, weight = 100 }, new WeightedPosterObject { selection = Posters.secretAdimirerLovePlayer, weight = 80 } }, 0.5f);
 
             Color minimapDustPanColor = new Color();
             ColorUtility.TryParseHtmlString("#793B42", out minimapDustPanColor);
@@ -307,6 +329,15 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
                 ObjectCreators.CreateDoorDataObject("DustPanDoor", AssetsCreator.CreateTexture("DustPanRoomDoor_Open", "Doors"), AssetsCreator.CreateTexture("DustPanRoomDoor_Closed", "Doors"))
             ));
 
+            RoomFunctionContainer dustPanFuncContainer = CreateRoomFunctionContainer("DustPan");
+            dustPanFuncContainer.AddRoomFunctionToContainer<ForcePosterFunction>().posters = new PosterObject[] { Posters.proibithedGottaSweep };
+            dustPanFuncContainer.AddRoomFunctionToContainer<NanaPeelRoomFunction>();
+            FundamentalCodingHelper.SetValue<ITM_NanaPeel>(dustPanFuncContainer.GetComponent<NanaPeelRoomFunction>(), "bananaPrefab", FundamentalCodingHelper.FindResourceObject<ITM_NanaPeel>());
+            FundamentalCodingHelper.SetValue<int>(dustPanFuncContainer.GetComponent<NanaPeelRoomFunction>(), "minBananas", 4);
+            FundamentalCodingHelper.SetValue<int>(dustPanFuncContainer.GetComponent<NanaPeelRoomFunction>(), "maxBananas", 8);
+
+            PlusLevelLoaderPlugin.Instance.roomSettings["DustPan"].container = dustPanFuncContainer;
+
             var trashbagSprite = ObjectCreationExtensions.CreateSpriteBillboard(AssetsCreator.CreateSprite("trashbag", "Rooms", 80)).AddSpriteHolder(2.2f);
             var trashBag = new GameObject("TrashBag").AddComponent<TrashBag>();
             trashBag.nanaPeelPref = FundamentalCodingHelper.FindResourceObject<ITM_NanaPeel>();
@@ -314,7 +345,11 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             trashBag.gameObject.AddBoxCollider(Vector3.zero, new Vector3(1, 10, 1), false);
             trashBag.gameObject.AddToEditor("TrashBag", new Vector3(0, 0f, 0));
 
-            CreateRooms(path: "DustPan", maxValue: 0, isOffLimits: true, cont: null, isAHallway: false, secretRoom: false, mapBg: null, keepTextures:true,  roomsTextures: new Texture2D[] { AssetsCreator.Get<Texture2D>("HappyWallDustPan"), AssetsCreator.Get<Texture2D>("Calpert"), AssetsCreator.Get<Texture2D>("GenericCeiling1") });
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("DustPanWall", AssetsCreator.Get<Texture2D>("HappyWallDustPan"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("DustPanFloor", AssetsCreator.Get<Texture2D>("Calpert"));
+            PlusLevelLoaderPlugin.Instance.textureAliases.Add("DustPanCeiling", AssetsCreator.Get<Texture2D>("GenericCeiling1"));
+
+            CreateRooms(path: "DustPan", maxValue: 0, isOffLimits: true, cont: dustPanFuncContainer, isAHallway: false, secretRoom: false, mapBg: null, keepTextures:true,  roomsTextures: new Texture2D[] { AssetsCreator.Get<Texture2D>("HappyWallDustPan"), AssetsCreator.Get<Texture2D>("Calpert"), AssetsCreator.Get<Texture2D>("GenericCeiling1") });
         }
 
         private static RoomFunctionContainer CreateRoomFunctionContainer(string prefix)
@@ -325,7 +360,7 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             return rfc;
         }
 
-        private static Dictionary<string, RoomAsset> CreateRooms(string path, int maxValue, bool isOffLimits = false, RoomFunctionContainer cont = null, bool isAHallway = false, bool secretRoom = false, Texture2D mapBg = null, bool keepTextures = true, Texture2D[] roomsTextures = null, bool squaredShape = false)
+        private static Dictionary<string, RoomAsset> CreateRooms(string path, int maxValue, bool isOffLimits = false, RoomFunctionContainer cont = null, bool isAHallway = false, bool secretRoom = false, Texture2D mapBg = null, bool keepTextures = true, Texture2D[] roomsTextures = null, WeightedPosterObject[] posters = null, float posterChance = 0, bool squaredShape = false)
         {
             Dictionary<string, RoomAsset> assets = new Dictionary<string, RoomAsset>();
             RoomFunctionContainer container = cont;
@@ -337,14 +372,19 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
                     var asset = RoomFactory.CreateAssetsFromPath(file, maxValue, isOffLimits, container, isAHallway, secretRoom, mapBg, keepTextures, squaredShape);
                     foreach (var room in asset)
                     {
+                        Debug.Log("Room_" + Path.GetFileNameWithoutExtension(file));
                         if (roomsTextures != null)
                         {
                             room.wallTex = roomsTextures[0];
                             room.florTex = roomsTextures[1];
                             room.ceilTex = roomsTextures[2];
                         }
+                        if (posters != null)  
+                            room.posters = posters.ToList();
 
-                        string roomName = Path.GetFileNameWithoutExtension(file);
+                        room.posterChance = posterChance;
+                        
+                            string roomName = Path.GetFileNameWithoutExtension(file);
                         if (!assets.ContainsKey(roomName))
                         {
                             assets.Add(roomName, room);

@@ -139,7 +139,7 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             .SetMaxSightDistance(440)
             .SetMinMaxAudioDistance(50, 120)
             .AddPotentialRoomAsset(AssetsCreator.Get<RoomAsset>("SecretAdmier1"), 100)
-            .AddPotentialRoomAsset(AssetsCreator.Get<RoomAsset>("SecretAdmier2"), 50)
+            .AddPotentialRoomAsset(AssetsCreator.Get<RoomAsset>("SecretAdmier2"), 65)
             .AddSpawnableRoomCategories(EnumExtensions.GetFromExtendedName<RoomCategory>(bbpfer.Enums.Rooms.AdmirerSecret.ToString()))
             .EnableAcceleration()
             .Build()
@@ -153,12 +153,13 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             .SetPoster("pri_dustPan", "PST_PRI_DustPan1", "PST_PRI_DustPan2")
             .AddTrigger()
             .SetMinMaxAudioDistance(50, 120)
-            .AddPotentialRoomAsset(AssetsCreator.Get<RoomAsset>("DustPan1"), 100)
+            .AddPotentialRoomAsset(AssetsCreator.Get<RoomAsset>("DustPan1"), 96)
+            .AddPotentialRoomAsset(AssetsCreator.Get<RoomAsset>("DustPan2"), 100)
             .AddSpawnableRoomCategories(EnumExtensions.GetFromExtendedName<RoomCategory>(bbpfer.Enums.Rooms.DustPan.ToString()))
             .Build()
             .SetInitialSprite("DustPan", "DustPan_0", 20, -0.2f)
             .InitializeCustomData()
-            .CreateForcedNPC(new string[] { "F1", "END" });
+            .CreateNPC(new string[] { "F2", "F4", "END" }, new int[] { 50, 75, 62 });
         }
     }
 
