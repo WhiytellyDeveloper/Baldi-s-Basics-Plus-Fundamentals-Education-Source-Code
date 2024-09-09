@@ -14,7 +14,7 @@ namespace bbpfer.CustomContent.CustomItems
             SpriteRenderer sprite = ObjectCreationExtensions.CreateSpriteBillboard(AssetsCreator.CreateSprite("GenerixSoda_Spray", "Items", 25)).AddSpriteHolder(0, LayerStorage.ignoreRaycast);
             sprite.gameObject.layer = LayerStorage.billboardLayer;
             sprite.transform.SetParent(transform);
-            entity = gameObject.CreateEntity(1, 1, sprite.transform);
+            entity = gameObject.CreateEntity(1, 1, sprite.transform).SetEntityCollisionLayerMask(0);
 
             spraySound = FundamentalCodingHelper.GetVariable<SoundObject>(MTM101BaldAPI.Registers.ItemMetaStorage.Instance.FindByEnum(Items.Bsoda).value.item.GetComponent<ITM_BSODA>(), "sound");
         }
@@ -27,12 +27,6 @@ namespace bbpfer.CustomContent.CustomItems
             transform.forward = Singleton<CoreGameManager>.Instance.GetCamera(pm.playerNumber).transform.forward;
             entity.Initialize(pm.ec, transform.position);
             Singleton<CoreGameManager>.Instance.audMan.PlaySingle(spraySound);
-            entity.OnEntityMoveInitialCollision += (hit) =>
-            {
-                foreach (ActivityModifier activityModifier in activityMods)
-                    activityModifier.moveMods.Remove(moveMod);
-                Destroy(base.gameObject);
-            };
             pm.RuleBreak("Drinking", 0.8f, 0.1f);
             return true;
         }

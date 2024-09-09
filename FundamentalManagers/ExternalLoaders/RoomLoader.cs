@@ -280,9 +280,6 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             PlusLevelLoaderPlugin.Instance.textureAliases.Add("PlaceholderFloor", FundamentalCodingHelper.FindResourceObjectWithName<Texture2D>("Placeholder_Floor"));
             PlusLevelLoaderPlugin.Instance.textureAliases.Add("PlaceholderCeiling", FundamentalCodingHelper.FindResourceObjectWithName<Texture2D>("Placeholder_Celing"));
 
-            Dictionary<string, RoomAsset> placeholderRooms = CreateRooms("Placeholder", 0, true, null, false, false, null, false);
-
-
             Color minimapAdmirerSecretColor = new Color();
             ColorUtility.TryParseHtmlString("#BF40BF", out minimapAdmirerSecretColor);
 

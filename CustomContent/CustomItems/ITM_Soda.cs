@@ -17,7 +17,7 @@ namespace bbpfer.CustomContent.CustomItems
             sprite = ObjectCreationExtensions.CreateSpriteBillboard(AssetsCreator.CreateSprite("SodaSprite", "Items", 12)).AddSpriteHolder(0, LayerStorage.ignoreRaycast);
             sprite.gameObject.layer = LayerStorage.billboardLayer;
             sprite.transform.SetParent(transform);
-            entity = gameObject.CreateEntity(1, 1, sprite.transform);
+            entity = gameObject.CreateEntity(1, 1, sprite.transform).SetEntityCollisionLayerMask(0);
 
             splashSound = AssetsCreator.CreateSound("Soda_open", "Items", "", SoundType.Effect, "", 1);
             trashSound = AssetsCreator.CreateSound("Soda_end", "Items", "", SoundType.Effect, "", 1);

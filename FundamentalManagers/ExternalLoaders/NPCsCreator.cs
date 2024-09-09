@@ -137,7 +137,7 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             .AddTrigger()
             .AddLooker()
             .SetMaxSightDistance(440)
-            .SetMinMaxAudioDistance(50, 120)
+            .SetMinMaxAudioDistance(80, 150)
             .AddPotentialRoomAsset(AssetsCreator.Get<RoomAsset>("SecretAdmier1"), 100)
             .AddPotentialRoomAsset(AssetsCreator.Get<RoomAsset>("SecretAdmier2"), 65)
             .AddSpawnableRoomCategories(EnumExtensions.GetFromExtendedName<RoomCategory>(bbpfer.Enums.Rooms.AdmirerSecret.ToString()))
@@ -160,6 +160,21 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             .SetInitialSprite("DustPan", "DustPan_0", 20, -0.2f)
             .InitializeCustomData()
             .CreateNPC(new string[] { "F2", "F4", "END" }, new int[] { 50, 75, 62 });
+
+            //Fix Later
+            /*
+            NPC duwalio = new NPCBuilder<Duwalio>(BasePlugin.instance.Info)
+            .SetName("Duwalio")
+            .SetEnum(bbpfer.Enums.CustomNPCs.Duwalio.ToString())
+            .SetPoster("pri_duwalio", "PST_PRI_Duwalio1", "PST_PRI_Duwalio2")
+            .AddTrigger()
+            .SetMinMaxAudioDistance(175, 200)
+            .AddSpawnableRoomCategories(new RoomCategory[] { RoomCategory.Special, RoomCategory.Faculty })
+            .Build()
+            .SetInitialSprite("Duwalio", "Duwalio", 40, -0.84f)
+            .InitializeCustomData()
+            .CreateForcedNPC(new string[] { "F1", "END" });
+            */
         }
     }
 

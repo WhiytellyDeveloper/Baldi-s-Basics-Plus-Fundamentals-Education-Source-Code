@@ -109,8 +109,11 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
                 }
             ).CreatePoster(new string[] { "F2", "F3", "F4", "END" }, new int[] { 50, 105, 80, 105 });
 
-            Posters.noobPoster = CreatePoster("NoobPoster", "Posters").CreatePoster(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 95, 100, 120, 130, 105 });
+            Posters.noobPoster = CreatePoster("NoobPoster", "Posters").CreatePoster(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 95, 100, 120, 100, 105 });
             Posters.mystma12SunglassesPoster = CreatePoster("Mystman12SunglassesPoster", "Posters").CreatePoster(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 65, 80, 75, 100, 80 });
+            Posters.okiNPoster = CreatePoster("oKINPoster", "Posters").CreatePoster(new string[] { "F1", "F3", "END" }, new int[] { 30, 70, 40 }); 
+            Posters.partyPoster = CreatePoster("PartyPoster", "Posters").CreatePoster(new string[] { "F2", "F4", "END" }, new int[] { 40, 55, 30 });
+            Posters.securityPoster = CreatePoster("LockPoster", "Posters").CreatePoster(new string[] { "F1", "F2", "F4", "END" }, new int[] { 30, 20, 10, 48 });
 
             Posters.secretAdmirer10LikesPoster = CreatePoster("tyfor10likes", "Posters");
             Posters.secretAdimirerLovePlayer = CreatePoster("AdmirerSecretPoster1", "Posters");
@@ -142,6 +145,11 @@ public static class Posters
     public static PosterObject noobPoster;
     public static PosterObject altBrunitoPoster;
     public static PosterObject mystma12SunglassesPoster;
+    public static PosterObject okiNPoster;
+    public static PosterObject partyPoster;
+    public static PosterObject securityPoster;
+
+    //Room Exclusives
     public static PosterObject secretAdmirer10LikesPoster;
     public static PosterObject secretAdimirerLovePlayer;
     public static PosterObject proibithedGottaSweep;

@@ -171,18 +171,13 @@ namespace bbpfer.Extessions
         public static void RotateContinuously(this Transform transform, float speed) =>
             transform.Rotate(Vector3.up, Time.deltaTime * 2f * Mathf.PI * speed);
 
-        /*
-        public static ObjectBuilder AddCustomData<T>(this ObjectBuilder _structure) where T : CustomDataStucture
+        
+        public static ObjectBuilder InitializeBuilder(this ObjectBuilder _structure)
         {
-            var item = _structure.gameObject.AddComponent<T>();
-            item.builder = _structure;
-            item.LoadAllPrefabs();
-            item.LoadAllSounds();
-            item.LoadAllSprites();
-            item.LoadAllTextures();
+            _structure.GetComponent<CustomDataStucture>().Setup();
             return _structure;
         }
-        */
+        
 
         public static Material ReCreateMaterial(Material mat, Texture2D tex)
         {

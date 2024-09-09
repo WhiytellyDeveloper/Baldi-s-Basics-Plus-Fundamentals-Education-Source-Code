@@ -405,7 +405,7 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             .SetSprites("Bag")
             .SetGeneratorCost(80)
             .Build()
-            .CreateItem(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 30, 25, 12, 5, 40 })
+            .CreateItem(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 20, 25, 12, 5, 40 })
             .AddIntoShop(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 60, 50, 24, 10, 80 });
 
             bag.item.GetComponent<ITM_Bag>().open = true;
@@ -516,6 +516,18 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             .InitializeItem()
             .CreateItem(new string[] { "F2", "F3", "F4", "END" }, new int[] { 30, 22, 40, 38, 50 })
             .AddIntoShop(new string[] { "F2", "F3", "F4", "END" }, new int[] { 20, 12, 30, 24, 25 });
+
+            ItemObject walkman = new ItemBuilder(BasePlugin.instance.Info)
+            .SetNameAndDescription("Itm_Walkman", "Desc_Walkman")
+            .SetEnum(CustomItems.Walkman.ToString())
+            .SetShopPrice(380)
+            .SetItemComponent<ITM_Walkman>()
+            .SetSprites("PortableTape")
+            .SetGeneratorCost(55)
+            .Build()
+            .InitializeItem()
+            .CreateItem(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 53, 48, 40, 50, 64 })
+            .AddIntoShop(new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 70, 75, 88, 98, 100 });
         }
     }
 }

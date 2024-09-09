@@ -4,6 +4,10 @@
     {
         Clock,
         EletricDoor,
-        Trash
+        Trash,
+        SpeedBump,
+        Flower,
+        BsodaWarper,
+        PrincpalCamera
     }
 }

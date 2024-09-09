@@ -11,8 +11,7 @@ namespace bbpfer.CustomContent.CustomItems
     {
         public void Setup()
         {
-            sprite = ObjectCreationExtensions.CreateSpriteBillboard(AssetsCreator.Get<Sprite>("Pretzel_Large")).AddSpriteHolder(0, LayerStorage.ignoreRaycast);
-            sprite.gameObject.layer = LayerStorage.billboardLayer;
+            sprite = ObjectCreationExtensions.CreateSpriteBillboard(AssetsCreator.Get<Sprite>("Pretzel_Large")).AddSpriteHolder(0, LayerStorage.billboardLayer);
             sprite.transform.SetParent(transform);
             gameObject.layer = LayerStorage.standardEntities;
             entity = gameObject.CreateEntity(1, 1, sprite.transform);

@@ -28,8 +28,6 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
 			Room.Load(new CustomFaculty("CustomFaculty11", 0, 100, 5f), new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 50, 60, 70, 80, 100 }, RoomCategory.Faculty);
 			Room.Load(new CustomFaculty("CustomFaculty12", 0, 100, 5f), new string[] { "F2", "F3", "F4", "END" }, new int[] { 50, 76, 30, 80 }, RoomCategory.Faculty);
 			Room.Load(new CustomFaculty("CustomFaculty13", 0, 100, 0.1f), new string[] { "F2", "F3", "F4", "END" }, new int[] { 70, 60, 80, 110 }, RoomCategory.Faculty);
-			Room.Load(new CustomDebugRoom("DebugRoom"), new string[] { "F2", "F3", "F4", "END" }, new int[] { 40, 50, 80, 0 }, RoomCategory.Buffer, true);
-			
 		}
 
 
@@ -221,48 +219,6 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
 			}
 
 			return roomAsset;
-		}
-	}
-}
-
-public class CustomDebugRoom : Room
-{
-	protected string _file;
-
-	public CustomDebugRoom(string file) : base(file)
-	{
-		_file = file;
-	}
-
-
-	public override RoomAsset Build()
-	{
-		RoomAsset roomAsset = ScriptableObject.CreateInstance<RoomAsset>();
-		Setup(roomAsset, _file);
-
-		roomAsset.name = _file;
-		roomAsset.category = EnumExtensions.ExtendEnum<RoomCategory>("Debug");
-		roomAsset.type = RoomType.Room;
-		roomAsset.color = Color.black;
-		roomAsset.doorMats = ObjectCreators.CreateDoorDataObject("DebugDoor", AssetsCreator.CreateTexture("Door_Open", "Doors"), AssetsCreator.CreateTexture("Door_Closed", "Doors"));
-		roomAsset.windowObject = RoomAssetMetaStorage.Instance.Get(RoomCategory.Faculty, "Room_Faculty_School_0").value.windowObject;
-		roomAsset.hasActivity = false;
-		roomAsset.offLimits = true;
-		roomAsset.keepTextures = true;
-		roomAsset.wallTex = RoomAssetMetaStorage.Instance.Get(RoomCategory.Faculty, "Room_Faculty_School_0").value.wallTex;
-		roomAsset.florTex = RoomAssetMetaStorage.Instance.Get(RoomCategory.Faculty, "Room_Faculty_School_0").value.florTex;
-		roomAsset.ceilTex = RoomAssetMetaStorage.Instance.Get(RoomCategory.Faculty, "Room_Faculty_School_0").value.ceilTex;
-		roomAsset.posterChance = 0;
-		roomAsset.windowChance = 0.5f;
-		return roomAsset;
-	}
-
-	public static void CreateRoomFunctionAndContainer<F>(RoomAsset room) where F : RoomFunction
-	{
-		if (room.roomFunctionContainer.gameObject.GetComponent<F>() == null)
-		{
-			var comp = room.roomFunctionContainer.gameObject.AddComponent<F>();
-			room.roomFunctionContainer.AddFunction(comp);
 		}
 	}
 }

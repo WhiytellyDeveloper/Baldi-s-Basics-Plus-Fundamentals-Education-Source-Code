@@ -113,6 +113,9 @@
         Random,
         LIHFDZKJGNB,
         FreddyTheTrader,
-        SunnyTheGardener
+        SunnyTheGardener,
+        okiN,
+        Jacob,
+        RasonTheRobot
     }
 }

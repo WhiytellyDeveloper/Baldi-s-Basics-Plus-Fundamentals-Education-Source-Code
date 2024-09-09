@@ -23,11 +23,17 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             eletricDoor.gameObject.ConvertToPrefab(true);
             //eletricDoor.AddStructure(new string[] { "F1" }, null);
 
+            var speedBump = new GameObject("SpeedBumPreated").AddComponent<SpeedBumpsBuilder>();
+            speedBump.obstacle = EnumExtensions.ExtendEnum<Obstacle>(Structures.SpeedBump.ToString());
+            speedBump.InitializeBuilder();
+            speedBump.gameObject.ConvertToPrefab(true);
+            //speedBump.AddStructure(new string[] { "F1" }, null);
+
             CreateVendingMachine("sodaMachine", "SodaMachine", new int[] { 1, 1 }, new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 70, 60, 50, 40, 60 }, CustomItems.Soda, 2);
             CreateVendingMachine("cookieMachine", "CookieMachine", new int[] { 1, 4 }, new string[] { "F1", "F2", "F3", "F4", "END" }, new int[] { 100, 50, 80, 20, 95 }, CustomItems.Cookie);
             CreateVendingMachine("genericSodaMachine", "GenericSodaMachine", new int[] { 1, 3 }, new string[] { "F1", "F3", "F4", "END" }, new int[] { 80, 60, 74, 45 }, CustomItems.GenericSoda); 
             CreateVendingMachine("iceCreamMachine", "IceCreamMachine", new int[] { 1, 2 }, new string[] { "F2", "F3", "F4", "END" }, new int[] { 75, 40, 60, 70 }, CustomItems.IceCream);
-            CreateVendingMachine("teaMachine", "TeaMachine", new int[] { 1, 3 }, new string[] { "F2", "F3", "F4", "END" }, new int[] { 120, 100, 80, 110 }, CustomItems.Tea, 1, new WeightedItemObject[] {
+            CreateVendingMachine("teaMachine", "TeaMachine", new int[] { 1, 3 }, new string[] { "F2", "F3", "F4", "END" }, new int[] { 110, 87, 78, 100 }, CustomItems.Tea, 1, new WeightedItemObject[] {
                 new WeightedItemObject { selection = ItemMetaStorage.Instance.FindByEnum(EnumExtensions.GetFromExtendedName<Items>(CustomItems.Tea.ToString())).value, weight = 50 },
                 new WeightedItemObject { selection = ItemMetaStorage.Instance.FindByEnum(EnumExtensions.GetFromExtendedName<Items>(CustomItems.DietTea.ToString())).value, weight = 100 }
             });

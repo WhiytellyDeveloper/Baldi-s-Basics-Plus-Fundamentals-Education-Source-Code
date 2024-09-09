@@ -92,6 +92,7 @@
         Swapper,
         PeachSoda,
         PinnapleSoda, //GrapeSoda
-        WhiteZesty
+        WhiteZesty,
+        PlaceableTeleporter
     }
 }

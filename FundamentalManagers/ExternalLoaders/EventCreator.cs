@@ -40,6 +40,7 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             .Build()
             .CreateEvent(new string[] { "F2", "F3", "F4", "END" }, new int[] { 62, 78, 80, 98 });
 
+            /*
             RandomEvent supriseGift = new RandomEventBuilder<SupriseGiftEvent>(BasePlugin.instance.Info)
             .SetName("CustomEvent_SupriseGift")
             .SetEnum("SupriseGift")
@@ -48,6 +49,7 @@ namespace bbpfer.FundamentalManagers.ExternalLoaders
             .SetMinMaxTime(38, 50)
             .Build()
             .CreateEvent(new string[] {"F2", "F3", "F4", "END" }, new int[] { 90, 50, 23, 75 });
+            */
 
         }
     }
